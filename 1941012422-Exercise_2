@@ -1,0 +1,218 @@
+Q1
+var Node = function (name) {
+this.children = [];
+this.name = name;
+}
+Node.prototype = {
+add: function (child) {
+this.children.push(child);
+},
+remove: function (child) {
+var length = this.children.length;
+for (var i = 0; i &lt; length; i++) {
+if (this.children[i] === child) {
+this.children.splice(i, 1);
+return;
+}
+}
+},
+getChild: function (i) {
+return this.children[i];
+},
+hasChildren: function () {
+return this.children.length &gt; 0;
+}
+}
+// recursively traverse a (sub)tree
+function traverse(indent, node) {
+console.log(Array(indent++).join(&quot;--&quot;) + node.name);
+for (var i = 0, len = node.children.length; i &lt; len; i++) {
+
+traverse(indent, node.getChild(i));
+}
+}
+function run() {
+var tree = new Node(&quot;root&quot;);
+var left = new Node(&quot;left&quot;)
+var right = new Node(&quot;right&quot;);
+var leftleft = new Node(&quot;leftleft&quot;);
+var leftright = new Node(&quot;leftright&quot;);
+var rightleft = new Node(&quot;rightleft&quot;);
+var rightright = new Node(&quot;rightright&quot;);
+tree.add(left);
+tree.add(right);
+tree.remove(right); // note: remove
+tree.add(right);
+left.add(leftleft);
+left.add(leftright);
+right.add(rightleft);
+right.add(rightright);
+traverse(1, tree);
+}
+
+Q2. One organization have one depratment as HR department and two child department as
+Humanity Department and Logistic Department under Hr department. We have to calulate
+tax as HRA is different for different departments but it should implement main TaxCalulator
+interface. Which design pattern will be preferred for this problem. Provide suitable code
+snippet for this.
+
+public interface TaxCalculator {
+public abstract void execute();
+}
+public class Humanity implements TaxCalculator {
+private int basic_salary;
+public Order(int basic_salary) {
+this.basic_salary = basic_salary;
+}
+@Override
+public void execute() {
+HRA=(10/100)*basicsalary;
+}
+}
+public class Logistic implements TaxCalculator {
+private int basic_salary;
+public Order(int basic_salary) {
+this.basic_salary = basic_salary;
+}
+@Override
+
+public void execute() {
+HRA=(10/100)*basicsalary;
+}
+}
+public class Department {
+public static void main(String[] args) {
+basic_salary basic_salary = new basic_salary();
+Humanity humanity = new Humanity(basic_salary);
+Logistic logistic = new Logistic(basic_salary);
+Humanity.execute();
+humanity = new humanity(basic_salary);
+logistic = new Logistic(basic_salary);
+Logistic.execute();
+}
+}
+
+Q3. Write a javascript function to find average of all numbers and variance of those numbers ?
+Write Async/await function for both of calculations
+
+const arr = [4, 6, 7, 8, 9, 10, 10];
+const findVariance = (arr = []) =&gt; {
+if(!arr.length){
+return 0;
+};
+const sum = arr.reduce((acc, val) =&gt; acc + val);
+const { length: num } = arr;
+const median = sum / num;
+let variance = 0;
+arr.forEach(num =&gt; {
+variance += ((num - median) * (num - median));
+});
+variance /= num;
+return variance;
+};
+console.log(findVariance(arr))
+
+Q4. Create a class as Product in Javascript which will have productId, ProductName and
+Productprice fields in that class. Create a few instance and store them in JSON format. Now
+access those data and print to console using Promise object.
+
+class productId
+{
+constructor( productId, ProductName,Productprice)
+{
+this.productId=productId;
+this.ProductName=ProductName;
+this.Productprice=Productprice;
+}
+}
+let ob1=new productId(1111,aaaa,3345);
+let ob2=new productId(22,bbb,3456);
+
+Q5. Create ReactJs/Angular web project on local system for below mentioned
+usability.
+
+
+import { useState } from &#39;react&#39;;
+export default function Form() {
+// States for registration
+const [name, setName] = useState(&#39;&#39;);
+const [email, setEmail] = useState(&#39;&#39;);
+const [password, setPassword] = useState(&#39;&#39;);
+// States for checking the errors
+const [submitted, setSubmitted] = useState(false);
+const [error, setError] = useState(false);
+// Handling the name change
+const handleName = (e) =&gt; {
+setName(e.target.value);
+setSubmitted(false);
+};
+// Handling the email change
+const handleEmail = (e) =&gt; {
+setEmail(e.target.value);
+setSubmitted(false);
+};
+// Handling the password change
+const handlePassword = (e) =&gt; {
+setPassword(e.target.value);
+setSubmitted(false);
+};
+// Handling the form submission
+const handleSubmit = (e) =&gt; {
+e.preventDefault();
+if (name === &#39;&#39; || email === &#39;&#39; || password === &#39;&#39;) {
+setError(true);
+} else {
+setSubmitted(true);
+setError(false);
+}
+};
+// Showing success message
+const successMessage = () =&gt; {
+return (
+&lt;div
+className=&quot;success&quot;
+style={{
+
+display: submitted ? &#39;&#39; : &#39;none&#39;,
+}}&gt;
+&lt;h1&gt;User {name} successfully registered!!&lt;/h1&gt;
+&lt;/div&gt;
+);
+};
+// Showing error message if error is true
+const errorMessage = () =&gt; {
+return (
+&lt;div
+className=&quot;error&quot;
+style={{
+display: error ? &#39;&#39; : &#39;none&#39;,
+}}&gt;
+&lt;h1&gt;Please enter all the fields&lt;/h1&gt;
+&lt;/div&gt;
+);
+};
+return (
+&lt;div className=&quot;form&quot;&gt;
+&lt;div&gt;
+&lt;h1&gt;User Registration&lt;/h1&gt;
+&lt;/div&gt;
+{/* Calling to the methods */}
+&lt;div className=&quot;messages&quot;&gt;
+{errorMessage()}
+{successMessage()}
+&lt;/div&gt;
+&lt;form&gt;
+{/* Labels and inputs for form data */}
+&lt;label className=&quot;label&quot;&gt;UserName&lt;/label&gt;
+&lt;input onChange={handleName} className=&quot;input&quot;
+value={name} type=&quot;text&quot; /&gt;
+&lt;label className=&quot;label&quot;&gt;Password&lt;/label&gt;
+&lt;input onChange={handlePassword} className=&quot;input&quot;
+value={password} type=&quot;password&quot; /&gt;
+&lt;button onClick={handleSubmit} className=&quot;btn&quot; type=&quot;submit&quot;&gt;
+Submit
+&lt;/button&gt;
+&lt;/form&gt;
+&lt;/div&gt;
+);
+}
