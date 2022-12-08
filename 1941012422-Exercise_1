@@ -1,0 +1,235 @@
+Q1)
+
+import java.util.*;
+public class Main {
+public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+System.out.println(&quot;Enter the size&quot;);
+int n=sc.nextInt();
+String s[]=new String[n];
+System.out.println(&quot;Enter the elements in array&quot;);
+for(int i=0;i&lt;s.length;i++) {
+s[i]=sc.next();
+}
+HashSet&lt;String&gt; str=new HashSet&lt;String&gt;();
+for(int i=0;i&lt;s.length;i++) {
+str.add(s[i].toLowerCase());
+}
+System.out.println(str);
+}
+}
+
+Q2)
+
+class Main {
+public static void main(String[] args) {
+Product pr = new Product();
+pr.getProductName();
+Price p = new Price();
+p.getPrice();
+}
+}
+abstract class Market{
+abstract void getPrice();
+abstract void getProductName();
+}
+class Price extends Market{
+@Override
+public void getPrice(){
+System.out.println(&quot;The price is &quot;+20);
+}
+@Override
+public void getProductName(){
+}
+}
+class Product extends Market{
+@Override
+public void getProductName(){
+
+System.out.println(&quot;Product = Maggi&quot;);
+}
+@Override
+public void getPrice(){
+}
+}
+
+Q3)
+import java.util.*;
+public class Main {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+Scanner sc=new Scanner(System.in);
+System.out.println(&quot;Enter the size of array&quot;);
+int size=sc.nextInt();
+int array[]=new int[size];
+System.out.println(&quot;Enter elements to array&quot;);
+for(int i=0;i&lt;size;i++) {
+array[i]=sc.nextInt();
+}
+int temp;
+// size = array.length;
+for(int i = 0; i&lt;size; i++ ){
+for(int j = i+1; j&lt;size; j++){
+if(array[i]&gt;array[j]){
+temp = array[i];
+array[i] = array[j];
+array[j] = temp;
+}
+}
+}
+System.out.println(&quot;second largest number is:: &quot;+array[size-2]);
+}
+}
+
+Q4)
+public class Main {
+public static void main(String[] args) {
+int arr[] = {5,6,7,8,9,1,2,13};
+for(int i=0;i&lt;arr.length;i++)
+{
+for(int j=i+1;j&lt;arr.length;j++)
+{
+for(int k=0;k&lt;arr.length;k++)
+{
+if(arr[i]+arr[j]==arr[k])
+{
+System.out.println(arr[i]+&quot; &quot;+arr[j]);
+
+}
+}
+}
+}
+}
+}
+
+SQL
+
+Q1) CREATE TABLE Subject(
+id VARCHAR(10) PRIMARY KEY,
+rollno INT,
+subname VARCHAR(20),
+marks INT
+);
+CREATE TABLE Student(
+id VARCHAR(10),
+rollno INT,
+sname VARCHAR(20),
+address VARCHAR(50),
+FOREIGN KEY(id) REFERENCES Subject(id)
+);
+INSERT INTO Subject VALUES(&#39;A001&#39;, 2863, &#39;Maths&#39;, 80);
+INSERT INTO Subject VALUES(&#39;A002&#39;, 2864, &#39;Physics&#39;, 90);
+INSERT INTO Subject VALUES(&#39;A003&#39;, 2865, &#39;Chemistry&#39;, 50);
+INSERT INTO Subject VALUES(&#39;A004&#39;, 2866, &#39;Biology&#39;, 70);
+INSERT INTO Subject VALUES(&#39;A005&#39;, 2867, &#39;History&#39;, 60);
+
+INSERT INTO Student VALUES(&#39;A003&#39;, 2865, &#39;Ayush&#39;, &#39;bbsr&#39;);
+INSERT INTO Student VALUES(&#39;A004&#39;, 2866, &#39;Anurag&#39;, &#39;jsg&#39;);
+INSERT INTO Student VALUES(&#39;A004&#39;, 2866, &#39;Rahul&#39;, &#39;jsr&#39;);
+INSERT INTO Student VALUES(&#39;A001&#39;, 2863, &#39;Manish&#39;, &#39;sng&#39;);
+SELECT subname, COUNT(id) AS &#39;Total Students&#39; FROM Subject
+WHERE subname = &#39;Biology&#39;
+GROUP BY subname;
+SELECT SUM(marks) AS TotMarks FROM Subject, Student
+WHERE Subject.id = Student.id
+AND sname = &#39;Ayush&#39;;
+
+Q2) CREATE TABLE Product(
+id INT PRIMARY KEY,
+name VARCHAR(30),
+price INT,
+location VARCHAR(30)
+);
+
+CREATE TABLE manufacturer(
+id INT,
+company_name VARCHAR(30),
+product_id VARCHAR(5),
+address VARCHAR(20),
+FOREIGN KEY(id) REFERENCES Product(id)
+);
+INSERT INTO Product VALUES(1, &#39;Ayush&#39;, 100, &#39;bbsr&#39;);
+INSERT INTO Product VALUES(2, &#39;Aman&#39;, 200, &#39;jsg&#39;);
+INSERT INTO Product VALUES(3, &#39;Anurag&#39;, 50, &#39;jsr&#39;);
+INSERT INTO Product VALUES(4, &#39;Rahul&#39;, 300, &#39;sng&#39;);
+INSERT INTO Product VALUES(5, &#39;Manish&#39;, 70, &#39;bjr&#39;);
+INSERT INTO manufacturer VALUES(2, &#39;Virtusa&#39;, &#39;A01&#39;, &#39;khandagiri&#39;);
+INSERT INTO manufacturer VALUES(3, &#39;Microsoft&#39;, &#39;A02&#39;, &#39;Patia&#39;);
+INSERT INTO manufacturer VALUES(3, &#39;Hexaware&#39;, &#39;A03&#39;, &#39;Udaygiri&#39;);
+INSERT INTO manufacturer VALUES(1, &#39;Informatica&#39;, &#39;A04&#39;, &#39;Jagmohan Nagar&#39;);
+INSERT INTO manufacturer VALUES(4, &#39;Meta.net&#39;, &#39;A05&#39;, &#39;Bapujinagar&#39;);
+SELECT company_name FROM Product, manufacturer
+WHERE Product.id = manufacturer.id
+AND product_id = &#39;A02&#39;;
+
+HTML
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-
+scale=1.0&quot;&gt;
+    &lt;title&gt;WEBPAGE&lt;/title&gt;
+    &lt;style&gt;
+        div.container{
+        display:grid;
+        grid-template-columns:18% 78%;
+        grid-gap:10px;
+        }
+        div.nested-item{
+        display:grid;
+        grid-template-columns:repeat(1,1fr);
+        grid-template-rows: 75px 420px 75px;
+        }
+        div.main-section{
+
+        display:grid;
+        grid-template-columns:30% 20%;
+        grid-gap:10px;
+        }
+        div.item2{
+        background-color:green;
+        padding:10px;
+        }
+        div.item3{
+        background-color:skyblue;
+        padding:10px;
+        }
+        div.item4{
+        background-color:rgb(169, 205, 50);
+        padding:10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;item1&quot; id=&quot;nav&quot; &gt;
+          &lt;img src=&quot;img3.jpg&quot; alt=&quot;This is a logo&quot;
+ width=&quot;100&quot;&gt;&lt;br&gt;
+            Sign up&lt;br&gt;
+          Home&lt;br&gt;
+          Product&lt;br&gt;
+          Help
+        &lt;/div&gt;
+        &lt;div class=&quot;nested-item&quot;&gt;
+          &lt;div class=&quot;item2&quot; id=&quot;header&quot;&gt;
+            SITE NAME
+          &lt;/div&gt;
+          &lt;div class=&quot;main-section&quot;&gt;
+            &lt;div class=&quot;item3&quot; id=&quot;artical&quot;&gt;
+              CONTENT
+            &lt;/div&gt;
+            &lt;div class=&quot;item4&quot; id=&quot;ads&quot;&gt;
+             
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;item2&quot; id=&quot;footer&quot;&gt;
+              Footer
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
